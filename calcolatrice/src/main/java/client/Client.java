@@ -5,23 +5,32 @@ import java.util.Scanner;
 
 public class Client {
     public void avvia(){
+        // Creazione del socket e connessione al server
         try(Socket client = new Socket("localhost", 12345)){
             System.out.println("Connesso al server!");
+            // Creazione dei flussi di input e output
             BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
             PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+            // Creazione dello scanner per leggere l'input dell'utente
             Scanner scan = new Scanner(System.in);
-
-            System.out.println("Benvenuto nella calcolatrice! Inserisci un'operazione (es. 2 + 2) o 'exit' per uscire:");
+            
+            // Ciclo per leggere l'input dell'utente e inviarlo al server
+            System.out.println("Benvenuto nella calcolatrice! Inserisci un'operazione, inserisci prima le due cifre e poi l'operatore, dividi tutto con ; o 'exit' per uscire:");
             String input;
             while(!(input = scan.nextLine()).equals("exit")){
+                // Invio dell'input al server
                 out.println(input);
                 out.flush();
-                System.out.println("Risultato: " + in.readLine());
+                System.out.println( in.readLine());
             }
 
         }
+        // Gestione delle eccezioni
         catch(IOException e){
             System.out.println("Errore di connessione: " + e.getMessage());
+        }
+        catch(Exception e){
+            System.out.println("Errore: " + e.getMessage());
         }
     }
 }
