@@ -6,13 +6,15 @@ import java.util.Scanner;
 public class Client {
     public void avvia(){
         // Creazione del socket e connessione al server
-        try(Socket client = new Socket("localhost", 12345)){
+        try(
+            Socket client = new Socket("localhost", 12345);
+            Scanner scan = new Scanner(System.in);
+        ){
             System.out.println("Connesso al server!");
             // Creazione dei flussi di input e output
             BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
             PrintWriter out = new PrintWriter(client.getOutputStream(), true);
             // Creazione dello scanner per leggere l'input dell'utente
-            Scanner scan = new Scanner(System.in);
             
             // Ciclo per leggere l'input dell'utente e inviarlo al server
             System.out.println("Benvenuto nella calcolatrice! Inserisci un'operazione, dividi tutto con uno spazio o 'exit' per uscire:");
