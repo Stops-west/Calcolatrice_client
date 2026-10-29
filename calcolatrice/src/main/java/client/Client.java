@@ -15,7 +15,7 @@ public class Client {
             Scanner scan = new Scanner(System.in);
             
             // Ciclo per leggere l'input dell'utente e inviarlo al server
-            System.out.println("Benvenuto nella calcolatrice! Inserisci un'operazione, inserisci prima le due cifre e poi l'operatore, dividi tutto con ; o 'exit' per uscire:");
+            System.out.println("Benvenuto nella calcolatrice! Inserisci un'operazione, dividi tutto con uno spazio o 'exit' per uscire:");
             String input;
             while(!(input = scan.nextLine()).equals("exit")){
                 // Invio dell'input al server
